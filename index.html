@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة إنماء للتطوير العقاري المحدودة</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .language-toggle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .language-toggle:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="building" patternUnits="userSpaceOnUse" width="100" height="100"><rect width="100" height="100" fill="%23f8f9fa"/><rect x="10" y="20" width="15" height="60" fill="%23e9ecef"/><rect x="30" y="15" width="15" height="65" fill="%23e9ecef"/><rect x="50" y="25" width="15" height="55" fill="%23e9ecef"/><rect x="70" y="10" width="15" height="70" fill="%23e9ecef"/></pattern></defs><rect width="1000" height="1000" fill="url(%23building)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: white;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 5%;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-image i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: white;
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* News Section */
+        .news {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .news-date {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-content h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 3rem 5% 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1rem 3%;
+            }
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">إنماء العقارية</div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#projects">المشاريع</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#news">الأخبار</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> 00967-2-363636</span>
+                <button class="language-toggle">English</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="floating">شركة إنماء للتطوير العقاري</h1>
+            <p>رائدة في مجال التطوير العقاري في اليمن منذ 2004</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">استكشف مشاريعنا</a>
+                <a href="#contact" class="btn btn-secondary">تواصل معنا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>مشاريعنا الرائدة</h2>
+                <p>نفخر بتقديم أفضل المشاريع العقارية في اليمن</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>مدينة إنماء السكنية كابوتا</h3>
+                        <p>أول مشروع سكني متكامل في عدن، يوفر بيئة سكنية عصرية مع جميع الخدمات الأساسية.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-number">684</div>
+                                <div class="stat-label">شقة سكنية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">66</div>
+                                <div class="stat-label">عمارة سكنية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">44</div>
+                                <div class="stat-label">محل تجاري</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">مكتمل</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>مشروع أبو حربة</h3>
+                        <p>أضخم مشروع عقاري في اليمن يضم أول أبراج سكنية بارتفاع 20 طابق مع فلل فاخرة ومول تجاري.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-number">2550</div>
+                                <div class="stat-label">شقة سكنية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">96</div>
+                                <div class="stat-label">فيلا فاخرة</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">250</div>
+                                <div class="stat-label">محل تجاري</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">80%</div>
+                                <div class="stat-label">قيد التنفيذ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>مشروع مدينة إنماء الحسوة</h3>
+                        <p>مشروع سكني مستقبلي يجمع بين الحداثة والراحة في موقع استراتيجي متميز.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-number">قريباً</div>
+                                <div class="stat-label">شقق سكنية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">قريباً</div>
+                                <div class="stat-label">فلل راقية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">متطور</div>
+                                <div class="stat-label">تصميم عصري</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">2025</div>
+                                <div class="stat-label">البداية المتوقعة</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news" id="news">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>آخر الأخبار</h2>
+                <p>تابع أحدث أخبار ومستجدات شركة إنماء العقارية</p>
+            </div>
+            
+            <div class="news-grid">
+                <div class="news-card reveal">
+                    <div class="news-date">
+                        <div>مايو 2025</div>
+                    </div>
+                    <div class="news-content">
+                        <h4>أعمال مشروع خط الضخ "مدينة إنماء الحسوة"</h4>
+                        <p>بدء العمل في تنفيذ خط الضخ الرئيسي لمشروع مدينة إنماء الحسوة كجزء من البنية التحتية المتطورة.</p>
+                    </div>
+                </div>
+
+                <div class="news-card reveal">
+                    <div class="news-date">
+                        <div>أبريل 2025</div>
+                    </div>
+                    <div class="news-content">
+                        <h4>إنماء العقارية تدشن مشروع ربط الحسوة بأحواض مياه الصرف الصحي</h4>
+                        <p>خطوة مهمة نحو إكمال البنية التحتية المتقدمة لمشروع الحسوة السكني الجديد.</p>
+                    </div>
+                </div>
+
+                <div class="news-card reveal">
+                    <div class="news-date">
+                        <div>مارس 2025</div>
+                    </div>
+                    <div class="news-content">
+                        <h4>حفل تكريم الفائزين في مسابقة إنماء القرآنية</h4>
+                        <p>في إطار المسؤولية المجتمعية، كرمت الشركة الفائزين في مسابقة القرآن الكريم السنوية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>شركة إنماء للتطوير العقاري</h3>
+                <p>رائدة في مجال التطوير العقاري في اليمن منذ عام 2004. نلتزم بتقديم أفضل المشاريع السكنية والتجارية التي تلبي احتياجات عملائنا.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>مشاريعنا</h3>
+                <p><a href="#">مدينة إنماء السكنية كابوتا</a></p>
+                <p><a href="#">مشروع أبو حربة</a></p>
+                <p><a href="#">مشروع مدينة إنماء الحسوة</a></p>
+                <p><a href="#">المشاريع المستقبلية</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>خدماتنا</h3>
+                <p><a href="#">التطوير العقاري</a></p>
+                <p><a href="#">التقسيط البنكي</a></p>
+                <p><a href="#">الاستشارات العقارية</a></p>
+                <p><a href="#">إدارة المشاريع</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>تواصل معنا</h3>
+                <p><i class="fas fa-phone"></i> 00967-2-363636/7/8</p>
+                <p><i class="fas fa-fax"></i> 00967-2-363639</p>
+                <p><i class="fas fa-envelope"></i> info@enma-ye.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> عدن، اليمن</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 شركة إنماء للتطوير العقاري المحدودة. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Reveal animation on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Language toggle functionality
+        document.querySelector('.language-toggle').addEventListener('click', function() {
+            // This would typically switch to English version
+            alert('English version will be available soon!');
+        });
+
+        // Mobile menu toggle (basic implementation)
+        const navLinks = document.querySelector('.nav-links');
+        const burger = document.createElement('div');
+        burger.classList.add('burger');
+        burger.innerHTML = '<i class="fas fa-bars"></i>';
+        burger.style.display = 'none';
+        burger.style.fontSize = '1.5rem';
+        burger.style.cursor = 'pointer';
+        burger.style.color = '#333';
+
+        // Add burger to nav on mobile
+        if (window.innerWidth <= 768) {
+            document.querySelector('nav').appendChild(burger);
+            burger.style.display = 'block';
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) {
+                burger.style.display = 'block';
+            } else {
+                burger.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
